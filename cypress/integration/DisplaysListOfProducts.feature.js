@@ -11,7 +11,7 @@ describe('Will display list of all products', () => {
   it('displays expected information inside product div', () => {
     cy.get('[cy-data="menu_id_1]').within(() => {
       cy.get('[cy-data="product_title_1"]').should('contain', 'Tenderloins')
-      cy.get('[cy-data="product_description_1"]').should('contain', 'Meat like pappa made it')
+      cy.get('[cy-data="product_description_1"]').should('contain', 'Our finest beef')
       cy.get('[cy-data="product_price_1"]').should('contain', '199')
     })
   })
