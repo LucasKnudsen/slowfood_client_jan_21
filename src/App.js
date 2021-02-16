@@ -16,10 +16,21 @@ class App extends React.Component {
   }
 
   render() {
+    const {products} = this.state
+    let productList = products.map((product) => {
+      return ( 
+        <div key={product.id}>
+          <h2>{product.title}</h2>
+          <p>{product.description}</p>
+          <small>{product.price}kr</small>
+        </div>
+      )
+    })
 
     return (
       <>
         <h1 className="header">Slowfood</h1>
+        {productList}
       </>
     );
   }
