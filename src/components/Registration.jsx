@@ -21,7 +21,9 @@ class Registration extends Component {
       expiry: response.headers['expiry'],
       token_type: 'Bearer'
     }
-    localStorage.setItem('credentials', JSON.stringify(userCredentials))
+    localStorage.setItem('credentials', JSON.stringify(userCredentials));
+    this.props.setAuthentication()
+    
 
   }
   

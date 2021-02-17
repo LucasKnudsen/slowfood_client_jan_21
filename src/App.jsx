@@ -5,8 +5,14 @@ import { Header, Grid, Item, Icon } from 'semantic-ui-react'
 import Registration from './components/Registration'
 
 class App extends React.Component {
-
+  state = {
+    authenticated: false
+  }
+  setAuthentication = () => {
+    this.setState({ authenticated: true })
+  }
   render() {
+    debugger
     return (
       <Grid textAlign="center" divided="vertically" >
         <Header as="h1" className="header">
@@ -17,11 +23,11 @@ class App extends React.Component {
           </Header.Content>
         </Header>
         <Grid.Row>
-          <Registration/>
+          <Registration setAuthentication = {() => this.setAuthentication()} />
         </Grid.Row>
         <Grid.Row>
           <Item.Group>
-            <MenuList/>
+            <MenuList />
           </Item.Group>
         </Grid.Row>
       </Grid>
