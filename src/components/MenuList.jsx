@@ -20,8 +20,8 @@ class MenuList extends React.Component {
     let productList = products.map((product) => {
       return (
 
-        <Item key={product.id}>
-          <Item.Content cy-data={`product_id_${product.id}`}>
+        <Item cy-data={`product_id_${product.id}`} key={product.id}>
+          <Item.Content >
             <Item.Header cy-data={`product_title_${product.id}`} >{product.title}</Item.Header>
             <Item.Description cy-data={`product_description_${product.id}`} >{product.description}</Item.Description>
             <Item.Extra cy-data={`product_price_${product.id}`} >{product.price}kr</Item.Extra>
