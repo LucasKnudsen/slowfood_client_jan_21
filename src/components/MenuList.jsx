@@ -17,7 +17,7 @@ class MenuList extends React.Component {
   }
   render() {
     const { products } = this.state
-    let productList = products.map((product) => {
+    let productList = this.state.products.map((product) => {
       return (
         <>
           <Divider hidden />
