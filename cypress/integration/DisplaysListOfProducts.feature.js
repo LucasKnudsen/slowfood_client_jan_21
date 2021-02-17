@@ -5,7 +5,7 @@ describe('Will display list of all products', () => {
       cy.route({
         method: "GET",
         url: "http://localhost:3000/api/products",
-        response: 'fixture:allProducts.json',
+        response: 'fixture:all_products.json',
       })
       cy.visit('/')
 

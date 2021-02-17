@@ -2,6 +2,7 @@ import React from 'react';
 import './app.css'
 import MenuList from './components/MenuList'
 import { Header, Grid, Item, Icon } from 'semantic-ui-react'
+import Registration from './components/Registration'
 
 class App extends React.Component {
 
@@ -15,6 +16,9 @@ class App extends React.Component {
             <Header.Subheader>Menu List</Header.Subheader>
           </Header.Content>
         </Header>
+        <Grid.Row>
+          <Registration/>
+        </Grid.Row>
         <Grid.Row>
           <Item.Group>
             <MenuList/>

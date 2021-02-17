@@ -17,11 +17,11 @@ describe('Add to order button', () => {
     })
 
     it('displays a form to register', () => {
-      cy.get('[cy-data="registration-form"]').within(() => {
-        cy.get('[cy-data="email-field"]').type('user@email.com')
-        cy.get('[cy-data="password-field"]').type('password')
-        cy.get('[cy-data="password-confirmation-field"]').type('password')
-        cy.get('[cy-data="submit"]').click()
+      cy.get('[data-cy="registration-form"]').within(() => {
+        cy.get('[data-cy="email-field"]').type('user@email.com')
+        cy.get('[data-cy="password-field"]').type('password')
+        cy.get('[data-cy="password-confirmation-field"]').type('password')
+        cy.get('[data-cy="submit"]').click()
       })
     })
 
