@@ -23,7 +23,6 @@ class Registration extends Component {
     }
     localStorage.setItem('credentials', JSON.stringify(userCredentials));
     this.props.setAuthentication()
-    
 
   }
   

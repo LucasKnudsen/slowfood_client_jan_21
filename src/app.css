@@ -6,3 +6,7 @@
 .ui.header:first-child {
   margin-top: 4em!important;
 }
+
+.ui.circular.button {
+  margin-top: 10px!important;
+}

@@ -12,7 +12,6 @@ class App extends React.Component {
     this.setState({ authenticated: true })
   }
   render() {
-    debugger
     return (
       <Grid textAlign="center" divided="vertically" >
         <Header as="h1" className="header">
@@ -23,11 +22,11 @@ class App extends React.Component {
           </Header.Content>
         </Header>
         <Grid.Row>
-          <Registration setAuthentication = {() => this.setAuthentication()} />
+          <Registration setAuthentication={() => this.setAuthentication()} />
         </Grid.Row>
         <Grid.Row>
           <Item.Group>
-            <MenuList />
+            <MenuList authenticated={this.state.authenticated}/>
           </Item.Group>
         </Grid.Row>
       </Grid>

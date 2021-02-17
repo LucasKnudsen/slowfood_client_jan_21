@@ -24,10 +24,11 @@ describe('Add to order button', () => {
         cy.get('[data-cy="password-field"]').type('password')
         cy.get('[data-cy="password-confirmation-field"]').type('password')
         cy.get('[data-cy="submit"]').click()
-        cy.get('[cy-data="product_id_1"]').within(() => {
-          cy.get('[data-cy="order-button"]').should('be.visible')
-        })
       })
+      cy.get('[cy-data="product_id_1"]').within(() => {
+        cy.get('[data-cy="order-button"]').should('be.visible')
+      })
+
     })
 
   })
