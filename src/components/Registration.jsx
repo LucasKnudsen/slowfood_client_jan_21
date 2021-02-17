@@ -47,6 +47,7 @@ sleepy
                 data-cy='email-field'
                 name="email"
                 control={Input}
+                type="email"
                 label='email'
                 placeholder='email'
               />
@@ -54,6 +55,7 @@ sleepy
                 data-cy='password-field'
                 name="password"
                 control={Input}
+                type="password"
                 label='password'
                 placeholder='password'
               />
@@ -61,6 +63,7 @@ sleepy
                 data-cy='password-confirmation-field'
                 name="password_confirmation"
                 control={Input}
+                type="password"
                 label='confirm password'
                 placeholder='retype password'
               />
