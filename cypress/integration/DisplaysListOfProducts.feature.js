@@ -23,10 +23,10 @@ describe('Will display list of all products', () => {
     beforeEach(() => {
       cy.visit('/')
       cy.server()
-      // Sends bad request
       cy.route({
         method: "GET",
-        url: "http://localhost:3000/api/products"
+        url: "http://localhost:3000/api/products",
+        response: { "products": [] }
       })
 
     })
