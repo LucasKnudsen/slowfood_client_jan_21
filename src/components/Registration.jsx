@@ -35,11 +35,12 @@ class Registration extends Component {
       this.setState({ errorMessage: response })
     }
   }
-
+sleepy
   render() {
+    const { renderForm, greeting, errorMessage } = this.state
     return (
       <div>
-        {this.state.renderForm ? (
+        {renderForm ? (
           <Form onSubmit={(event) => this.registerUser(event)} data-cy='registration-form'>
             <Form.Group>
               <Form.Field
@@ -65,10 +66,10 @@ class Registration extends Component {
               />
               <Button data-cy='submit' type='submit'>Register!</Button>
             </Form.Group>
-            {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
+            {errorMessage && <p>{errorMessage}</p>}
           </Form>
         ) : (
-            <h4>{this.state.greeting}</h4>
+            <h4>{greeting}</h4>
           ) 
         }
       </div>
