@@ -12,7 +12,7 @@ class MenuList extends React.Component {
   }
 
   getAllProducts = async () => {
-    let response = await axios.get('http://localhost:3000/api/products')
+    let response = await axios.get('/products')
     this.setState({ products: response.data.products })
   }
   render() {
