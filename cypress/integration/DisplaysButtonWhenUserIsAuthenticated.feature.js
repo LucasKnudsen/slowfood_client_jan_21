@@ -32,4 +32,29 @@ describe('Add to order button', () => {
     })
 
   })
+  describe('button not visible if user is not authenticated', () => {
+    beforeEach(() => {
+      cy.server()
+      cy.route({
+        method: "GET",
+        url: "http://localhost:3000/api/products",
+        response: 'fixture:all_products.json',
+      });
+      cy.route({
+        method: "POST",
+        url: "http://localhost:3000/api/products",
+        response: {
+          errors: "Something went wrong! Please try again!",
+          success: false
+        },
+        status: 401
+      })
+      cy.visit('/')
+    })
+    it('it is not visible', () => {
+      cy.get('[cy-data="product_id_1"]').within(() => {
+        cy.get('[data-cy="order-button"]').should('not.be.visible')
+      })
+    })
+  })
 })
