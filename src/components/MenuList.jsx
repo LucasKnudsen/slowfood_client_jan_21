@@ -17,14 +17,15 @@ class MenuList extends React.Component {
   }
   render() {
     const { products } = this.state
+    const { authenticated } = this.props
     let productList = products.map((product) => {
       return (
-        <Item cy-data={`product_id_${product.id}`} key={product.id}>
+        <Item cy-data={`product-id-${product.id}`} key={product.id}>
           <Item.Content >
-            <Item.Header cy-data={`product_title`} >{product.title}</Item.Header>
-            <Item.Description cy-data={`product_description`} >{product.description}</Item.Description>
-            <Item.Extra cy-data={`product_price`} >{product.price}kr</Item.Extra>
-            {this.props.authenticated &&
+            <Item.Header cy-data={`product-title`} >{product.title}</Item.Header>
+            <Item.Description cy-data={`product-description`} >{product.description}</Item.Description>
+            <Item.Extra cy-data={`product-price`} >{product.price}kr</Item.Extra>
+            {authenticated &&
               <Button circular size="mini" animated="fade" data-cy="order-button">
                 <Button.Content visible>Add to order!</Button.Content>
                 <Button.Content hidden>

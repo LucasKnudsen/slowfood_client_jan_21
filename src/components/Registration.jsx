@@ -11,31 +11,31 @@ class Registration extends Component {
 
   registerUser = async (event) => {
     event.preventDefault()
-
     let credentials = {
       email: event.target.email.value,
       password: event.target.password.value,
       password_confirmation: event.target.password_confirmation.value
     }
-    let response = await axios.post('/auth', credentials)
-    const userCredentials = {
-      uid: response.headers['uid'],
-      access_token: response.headers['access-token'],
-      client: response.headers['client'],
-      expiry: response.headers['expiry'],
-      token_type: 'Bearer'
+    try {
+      let response = await axios.post('/auth', credentials)
+      const userCredentials = {
+        uid: response.headers['uid'],
+        access_token: response.headers['access-token'],
+        client: response.headers['client'],
+        expiry: response.headers['expiry'],
+        token_type: 'Bearer'
+      }
+      localStorage.setItem('credentials', JSON.stringify(userCredentials));
+      if (response.data.data.email) {
+        this.props.setAuthentication()
+        this.setState({ renderForm: false })
+        this.setState({ greeting: `Bon Appétit ${response.data.data.email}!` })
+      }
     }
-    localStorage.setItem('credentials', JSON.stringify(userCredentials));
-
-    if (response.data.data.email) {
-      this.props.setAuthentication()
-      this.setState({ renderForm: false })
-      this.setState({ greeting: `Bon Appétit ${response.data.data.email}!` })
-    } else {
-      this.setState({ errorMessage: response })
+    catch (error) {
+      this.setState({ errorMessage: error.response.data.errors.full_messages.toString()})
     }
   }
-sleepy
   render() {
     const { renderForm, greeting, errorMessage } = this.state
     return (
@@ -69,11 +69,13 @@ sleepy
               />
               <Button data-cy='submit' type='submit'>Register!</Button>
             </Form.Group>
-            {errorMessage && <p>{errorMessage}</p>}
+            {errorMessage &&
+              <p data-cy="error-message">{errorMessage}</p>
+            }
           </Form>
         ) : (
             <h4>{greeting}</h4>
-          ) 
+          )
         }
       </div>
     )
