@@ -5,17 +5,17 @@ describe('Will display list of all products', () => {
       cy.route({
         method: "GET",
         url: "http://localhost:3000/api/products",
-        response: 'fixture:allProducts.json',
+        response: 'fixture:all_products.json',
       })
       cy.visit('/')
 
     })
 
     it('displays expected information inside product div', () => {
-      cy.get('[cy-data="product_id_1"]').within(() => {
-        cy.get('[cy-data="product_title_1"]').should('contain', 'Tenderloins')
-        cy.get('[cy-data="product_description_1"]').should('contain', 'Our finest beef')
-        cy.get('[cy-data="product_price_1"]').should('contain', '199')
+      cy.get('[cy-data="product-id-1"]').within(() => {
+        cy.get('[cy-data="product-title"]').should('contain', 'Tenderloins')
+        cy.get('[cy-data="product-description"]').should('contain', 'Our finest beef')
+        cy.get('[cy-data="product-price"]').should('contain', '199')
       })
     })
   })

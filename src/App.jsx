@@ -2,9 +2,15 @@ import React from 'react';
 import './app.css'
 import MenuList from './components/MenuList'
 import { Header, Grid, Item, Icon } from 'semantic-ui-react'
+import Registration from './components/Registration'
 
 class App extends React.Component {
-
+  state = {
+    authenticated: false
+  }
+  setAuthentication = () => {
+    this.setState({ authenticated: true })
+  }
   render() {
     return (
       <Grid textAlign="center" divided="vertically" >
@@ -16,8 +22,11 @@ class App extends React.Component {
           </Header.Content>
         </Header>
         <Grid.Row>
+          <Registration setAuthentication={() => this.setAuthentication()} />
+        </Grid.Row>
+        <Grid.Row>
           <Item.Group>
-            <MenuList/>
+            <MenuList authenticated={this.state.authenticated}/>
           </Item.Group>
         </Grid.Row>
       </Grid>

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios'
-import { Item, Divider } from 'semantic-ui-react'
+import { Item, Button, Icon } from 'semantic-ui-react'
 
 class MenuList extends React.Component {
   state = {
@@ -17,18 +17,24 @@ class MenuList extends React.Component {
   }
   render() {
     const { products } = this.state
+    const { authenticated } = this.props
     let productList = products.map((product) => {
       return (
-        <>
-          <Divider hidden />
-          <Item>
-            <Item.Content key={product.id} cy-data={`product_id_${product.id}`}>
-              <Item.Header cy-data={`product_title_${product.id}`} >{product.title}</Item.Header>
-              <Item.Description cy-data={`product_description_${product.id}`} >{product.description}</Item.Description>
-              <Item.Extra cy-data={`product_price_${product.id}`} >{product.price}kr</Item.Extra>
-            </Item.Content>
-          </Item>
-        </>
+        <Item cy-data={`product-id-${product.id}`} key={product.id}>
+          <Item.Content >
+            <Item.Header cy-data={`product-title`} >{product.title}</Item.Header>
+            <Item.Description cy-data={`product-description`} >{product.description}</Item.Description>
+            <Item.Extra cy-data={`product-price`} >{product.price}kr</Item.Extra>
+            {authenticated &&
+              <Button circular size="mini" animated="fade" data-cy="order-button">
+                <Button.Content visible>Add to order!</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="plus square outline" />
+                </Button.Content>
+              </Button>
+            }
+          </Item.Content>
+        </Item>
       )
     })
 
