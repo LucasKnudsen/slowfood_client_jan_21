@@ -25,10 +25,9 @@ describe('Add to order button', () => {
         cy.get('[data-cy="password-confirmation-field"]').type('password')
         cy.get('[data-cy="submit"]').click()
       })
-      cy.get('[cy-data="product_id_1"]').within(() => {
+      cy.get('[cy-data="product-id-1"]').within(() => {
         cy.get('[data-cy="order-button"]').should('be.visible')
       })
-
     })
 
   })
@@ -52,7 +51,18 @@ describe('Add to order button', () => {
       cy.visit('/')
     })
     it('it is not visible', () => {
-      cy.get('[cy-data="product_id_1"]').within(() => {
+      cy.get('[cy-data="product-id-1"]').within(() => {
+        cy.get('[data-cy="order-button"]').should('not.be.visible')
+      })
+    })
+    it('it is still not visible when user fails at login', () => {
+      cy.get('[data-cy="registration-form"]').within(() => {
+        cy.get('[data-cy="email-field"]').type('user@email.com')
+        cy.get('[data-cy="password-field"]').type('password')
+        cy.get('[data-cy="password-confirmation-field"]').type('passworm')
+        cy.get('[data-cy="submit"]').click()
+      })
+      cy.get('[cy-data="product-id-1"]').within(() => {
         cy.get('[data-cy="order-button"]').should('not.be.visible')
       })
     })
