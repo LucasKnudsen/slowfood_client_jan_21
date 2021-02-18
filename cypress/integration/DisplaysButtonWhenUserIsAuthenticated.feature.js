@@ -41,9 +41,9 @@ describe('Add to order button', () => {
       });
       cy.route({
         method: "POST",
-        url: "http://localhost:3000/api/products",
+        url: "http://localhost:3000/api/auth",
         response: {
-          errors: "Something went wrong! Please try again!",
+          errors: ["Invalid login credentials. Please try again."],
           success: false
         },
         status: 401
@@ -64,6 +64,15 @@ describe('Add to order button', () => {
       })
       cy.get('[cy-data="product-id-1"]').within(() => {
         cy.get('[data-cy="order-button"]').should('not.be.visible')
+      })
+    })
+    it('displays error message',() => {
+      cy.get('[data-cy="registration-form"]').within(() => {
+        cy.get('[data-cy="email-field"]').type('user@email.com')
+        cy.get('[data-cy="password-field"]').type('password')
+        cy.get('[data-cy="password-confirmation-field"]').type('passworm')
+        cy.get('[data-cy="submit"]').click()
+        cy.get('[data-cy="error-message"]').should('contain', "Invalid login credentials. Please try again.")
       })
     })
   })
