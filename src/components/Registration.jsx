@@ -33,7 +33,7 @@ class Registration extends Component {
       }
     }
     catch (error) {
-      this.setState({ errorMessage: error.response.data.errors[0]})
+      this.setState({ errorMessage: error.response.data.errors.full_messages.toString()})
     }
   }
   render() {
