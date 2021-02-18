@@ -15,7 +15,7 @@ describe('Add to order button', () => {
           uid: 'user@email.com'
         }
       });
-      cy.visit('/')
+      cy.visit('/menu')
     })
 
     it('displays a form to register', () => {
@@ -49,7 +49,7 @@ describe('Add to order button', () => {
         },
         status: 401
       })
-      cy.visit('/')
+      cy.visit('/menu')
     })
     it('it is not visible', () => {
       cy.get('[cy-data="product_id_1"]').within(() => {

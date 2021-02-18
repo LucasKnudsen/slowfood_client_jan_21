@@ -7,7 +7,7 @@ describe('Will display list of all products', () => {
         url: "http://localhost:3000/api/products",
         response: 'fixture:all_products.json',
       })
-      cy.visit('/')
+      cy.visit('/menu')
 
     })
 

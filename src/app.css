@@ -3,10 +3,36 @@
   margin: 0;
 }
 
+html {
+  min-height: 100vh!important;
+  background-image:url(https://cdn.pixabay.com/photo/2017/10/22/20/39/food-2879202_1280.jpg);
+  background-size: cover;
+}
+
+.ui.visible.push.sidebar {
+  display: flex!important;
+  justify-content: center;
+}
+
+.page-container {
+  padding-left: 150px!important;
+  min-height: 100vh!important;;
+  background-image:url(https://cdn.pixabay.com/photo/2017/10/22/20/39/food-2879202_1280.jpg);
+  background-size: cover;
+  
+}
+
 .ui.header:first-child {
-  margin-top: 4em!important;
+  margin-top: 2em!important;
+  font-size: 40px;
 }
 
 .ui.circular.button {
   margin-top: 10px!important;
 }
+
+.ui.items>.item {
+  padding-top: 15px!important;
+}
+
+/* https://cdn.pixabay.com/photo/2017/10/22/21/02/food-2879265_1280.jpg */
