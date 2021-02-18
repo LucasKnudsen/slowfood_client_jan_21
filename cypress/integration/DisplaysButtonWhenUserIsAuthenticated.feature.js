@@ -18,7 +18,7 @@ describe('Add to order button', () => {
           uid: 'user@email.com'
         }
       });
-      cy.visit('/')
+      cy.visit('/menu')
     })
 
     it('displays a form to register', () => {
@@ -47,7 +47,7 @@ describe('Add to order button', () => {
         },
         status: 401
       })
-      cy.visit('/')
+      cy.visit('/menu')
       cy.get('[data-cy="registration-form"]').within(() => {
         cy.get('[data-cy="email-field"]').type('user@email.com')
         cy.get('[data-cy="password-field"]').type('password')

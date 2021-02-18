@@ -1,35 +1,24 @@
 import React from 'react';
-import './app.css'
-import MenuList from './components/MenuList'
-import { Header, Grid, Item, Icon } from 'semantic-ui-react'
-import Registration from './components/Registration'
-
+import './app.css';
+import Home from './pages/Home';
+import Menu from './pages/Menu';
+import Contact from './pages/Contact';
+import Header from './components/Header';
+import { Switch, Route } from 'react-router-dom';
+  
 class App extends React.Component {
-  state = {
-    authenticated: false
-  }
-  setAuthentication = () => {
-    this.setState({ authenticated: true })
-  }
   render() {
     return (
-      <Grid textAlign="center" divided="vertically" >
-        <Header as="h1" className="header">
-          <Icon name="gulp" />
-          <Header.Content>
-            Slowfood
-            <Header.Subheader>Menu List</Header.Subheader>
-          </Header.Content>
-        </Header>
-        <Grid.Row>
-          <Registration setAuthentication={() => this.setAuthentication()} />
-        </Grid.Row>
-        <Grid.Row>
-          <Item.Group>
-            <MenuList authenticated={this.state.authenticated}/>
-          </Item.Group>
-        </Grid.Row>
-      </Grid>
+      <>
+        <Header />
+        <Switch >
+          <Route exact path="/" component={Home}></Route>
+          <Route exact path="/menu" component={Menu}></Route>
+          <Route exact path="/contact" component={Contact}></Route>
+          <Home />
+        </Switch>
+
+      </>
     );
   }
 }
