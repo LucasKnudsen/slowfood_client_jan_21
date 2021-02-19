@@ -1,7 +1,8 @@
 import React from 'react';
 import MenuList from '../components/MenuList'
 import { Header, Grid, Item, Icon, Container } from 'semantic-ui-react'
-import Registration from '../components/Registration'
+import Registration from '../components/Registration';
+import axios from 'axios'
 
 class Menu extends React.Component {
   state = {
@@ -13,6 +14,7 @@ class Menu extends React.Component {
 
   addToOrder = async (product) => {
     let authHeader = localStorage.getItem("credentials")
+    debugger
     let response = await axios.post('/orders', { product_id: product.id }, { headers: authHeader })
 
    // this.setState({order: response.data.data.order.items})
@@ -34,9 +36,9 @@ class Menu extends React.Component {
             <Registration setAuthentication={() => this.setAuthentication()} />
           </Grid.Row>
           <Grid.Row>
-            {orderMessage && <p data-cy="add-to-order">{this.state.orderMessage}</p>}
+            {this.state.orderMessage && <p data-cy="add-to-order">{this.state.orderMessage}</p>}
             <Item.Group>
-              <MenuList addToOrder={this.addToOrder()} authenticated={this.state.authenticated} />
+              <MenuList addToOrder={()=> {this.addToOrder()}} authenticated={this.state.authenticated} />
             </Item.Group>
           </Grid.Row>
         </Grid>
