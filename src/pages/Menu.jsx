@@ -13,12 +13,23 @@ class Menu extends React.Component {
   }
 
   addToOrder = async (product) => {
-    let authHeader = localStorage.getItem("credentials")
-    debugger
-    let response = await axios.post('/orders', { product_id: product.id }, { headers: authHeader })
-
-   // this.setState({order: response.data.data.order.items})
-    this.setState({ orderMessage: `${product.title} was added to your order` })
+    let authHeader = JSON.parse(localStorage.getItem("credentials"))
+    try {
+      let response = await axios.post(
+        "/orders",
+        { product_id: product.id },
+        { headers: authHeader })
+      debugger
+      response.status === 200 && (
+        this.setState({
+          orderLength: response.data.order.items.length,
+          orderMessage: `${product.title} was added to your order`
+        })
+      )
+    }
+    catch (error) {
+      this.setState({ orderMessage: "Product couldn't be added to your order. Try again later" })
+    }
   }
 
   render() {
@@ -32,13 +43,18 @@ class Menu extends React.Component {
             <Header.Subheader>Menu List</Header.Subheader>
             </Header.Content>
           </Header>
-          <Grid.Row>
+          <Grid.Row textAlign="center">
             <Registration setAuthentication={() => this.setAuthentication()} />
           </Grid.Row>
+          {this.state.orderMessage && (
+            <div >
+              <p id="order-message">{this.state.orderMessage}</p>
+              <p id="order-length">You have {this.state.orderLength} {this.state.orderLength > 1 ? "items" : "item"} in your order</p>
+            </div>
+          )}
           <Grid.Row>
-            {this.state.orderMessage && <p data-cy="add-to-order">{this.state.orderMessage}</p>}
             <Item.Group>
-              <MenuList addToOrder={()=> {this.addToOrder()}} authenticated={this.state.authenticated} />
+              <MenuList addToOrder={this.addToOrder} authenticated={this.state.authenticated} />
             </Item.Group>
           </Grid.Row>
         </Grid>

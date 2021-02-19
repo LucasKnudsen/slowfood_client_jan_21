@@ -23,7 +23,6 @@ class MenuList extends React.Component {
   //   this.setState({ orderMessage: `${product.title} was added to your order` })
   // }
 
-
   render() {
     const { products } = this.state
     const { authenticated } = this.props

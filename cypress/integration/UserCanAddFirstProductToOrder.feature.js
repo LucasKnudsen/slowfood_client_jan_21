@@ -18,10 +18,7 @@ describe('User can create order and add product to it', () => {
       cy.route({
         method: "POST",
         url: "http://localhost:3000/api/orders",
-        response: 'fixture:create_order.json',
-        headers: {
-          uid: 'user@email.com'
-        }
+        response: 'fixture:create_order.json'
       })
       cy.visit('/menu')
       cy.get('[data-cy="registration-form"]').within(() => {
@@ -30,17 +27,17 @@ describe('User can create order and add product to it', () => {
         cy.get('[data-cy="password-confirmation-field"]').type('password')
         cy.get('[data-cy="submit"]').click()
       })
-    })
-
-    it('Displays success message when product is added to order', () => {
       cy.get('[cy-data="product-id-1"]').within(() => {
         cy.get('[data-cy="order-button"]').click()
       })
-      cy.get('data.cy=["add-to-order"]').should('contain', 'Tenderloins was added to your order')
     })
 
-    it('')
+    it('Displays success message when product is added to order', () => {
+      cy.get('#order-message').should('contain', 'Tenderloins was added to your order')
+    })
 
+    it('Displays correct amount of items in the order', () => {
+      cy.get('#order-length').should('contain', 'You have 1 item in your order')
+    })
   })
-
 })

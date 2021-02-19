@@ -2,11 +2,13 @@
   "message": "The item was added to your order",
   "order": {
     "id": 1,
-    "items": {
-      "id": 1,
-      "title": "Tenderloins",
-      "description": "Our finest beef",
-      "price": 199
-    }
+    "items": [
+      {
+        "id": 1,
+        "title": "Tenderloins",
+        "description": "Our finest beef",
+        "price": 199
+      }
+    ]
   }
 }
