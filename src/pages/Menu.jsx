@@ -10,6 +10,15 @@ class Menu extends React.Component {
   setAuthentication = () => {
     this.setState({ authenticated: true })
   }
+
+  addToOrder = async (product) => {
+    let authHeader = localStorage.getItem("credentials")
+    let response = await axios.post('/orders', { product_id: product.id }, { headers: authHeader })
+
+   // this.setState({order: response.data.data.order.items})
+    this.setState({ orderMessage: `${product.title} was added to your order` })
+  }
+
   render() {
     return (
       <Container className="page-container" fluid>
@@ -25,8 +34,9 @@ class Menu extends React.Component {
             <Registration setAuthentication={() => this.setAuthentication()} />
           </Grid.Row>
           <Grid.Row>
+            {orderMessage && <p data-cy="add-to-order">{this.state.orderMessage}</p>}
             <Item.Group>
-              <MenuList authenticated={this.state.authenticated} />
+              <MenuList addToOrder={this.addToOrder()} authenticated={this.state.authenticated} />
             </Item.Group>
           </Grid.Row>
         </Grid>

@@ -16,10 +16,12 @@ class MenuList extends React.Component {
     this.setState({ products: response.data.products })
   }
 
-addToOrder = async (productId) => {
-  let authHeader = localStorage.getItem("credentials")
-  let response = await axios.post('/orders',{product_id: productId},{headers: authHeader})
-}
+  // addToOrder = async (product) => {
+  //   let authHeader = localStorage.getItem("credentials")
+  //   let response = await axios.post('/orders', { product_id: product.id }, { headers: authHeader })
+
+  //   this.setState({ orderMessage: `${product.title} was added to your order` })
+  // }
 
 
   render() {
@@ -33,12 +35,13 @@ addToOrder = async (productId) => {
             <Item.Description cy-data={`product-description`} >{product.description}</Item.Description>
             <Item.Extra cy-data={`product-price`} >{product.price}kr</Item.Extra>
             {authenticated &&
-              <Button onClick={()=>{this.addToOrder(product.id)}} circular size="mini" animated="fade" data-cy="order-button">
+              <Button onClick={() => { this.props.addToOrder(product) }} circular size="mini" animated="fade" data-cy="order-button">
                 <Button.Content visible>Add to order!</Button.Content>
                 <Button.Content hidden>
                   <Icon name="plus square outline" />
                 </Button.Content>
               </Button>
+
             }
           </Item.Content>
         </Item>
@@ -47,6 +50,7 @@ addToOrder = async (productId) => {
 
     return (
       <>
+        
         {productList}
       </>
     )
