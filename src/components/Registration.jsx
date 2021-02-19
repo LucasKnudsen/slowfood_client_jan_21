@@ -33,7 +33,9 @@ class Registration extends Component {
       }
     }
     catch (error) {
-      this.setState({ errorMessage: error.response.data.errors.full_messages.toString()})
+      error.response ? (
+      this.setState({ errorMessage: error.response.data.errors.full_messages.toString()}))
+      : this.setState({ errorMessage: "Couldn't connect to the server! Please try again later!"})
     }
   }
   render() {

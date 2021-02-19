@@ -15,6 +15,13 @@ class MenuList extends React.Component {
     let response = await axios.get('/products')
     this.setState({ products: response.data.products })
   }
+
+addToOrder = async (productId) => {
+  let authHeader = localStorage.getItem("credentials")
+  let response = await axios.post('/orders',{product_id: productId},{headers: authHeader})
+}
+
+
   render() {
     const { products } = this.state
     const { authenticated } = this.props
@@ -26,7 +33,7 @@ class MenuList extends React.Component {
             <Item.Description cy-data={`product-description`} >{product.description}</Item.Description>
             <Item.Extra cy-data={`product-price`} >{product.price}kr</Item.Extra>
             {authenticated &&
-              <Button circular size="mini" animated="fade" data-cy="order-button">
+              <Button onClick={()=>{this.addToOrder(product.id)}} circular size="mini" animated="fade" data-cy="order-button">
                 <Button.Content visible>Add to order!</Button.Content>
                 <Button.Content hidden>
                   <Icon name="plus square outline" />
