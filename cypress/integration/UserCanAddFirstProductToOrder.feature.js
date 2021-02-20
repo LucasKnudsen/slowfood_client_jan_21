@@ -18,7 +18,8 @@ describe('User can create order and add product to it', () => {
       cy.route({
         method: "POST",
         url: "http://localhost:3000/api/orders",
-        response: 'fixture:create_order.json'
+        response: 'fixture:create_order.json',
+        status: 201
       })
       cy.visit('/menu')
       cy.get('[data-cy="registration-form"]').within(() => {
