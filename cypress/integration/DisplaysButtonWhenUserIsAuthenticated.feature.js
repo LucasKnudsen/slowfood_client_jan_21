@@ -9,7 +9,6 @@ describe('Add to order button', () => {
   })
   describe('is visible for authenticated users', () => {
     beforeEach(() => {
-      cy.server()
       cy.route({
         method: "POST",
         url: "http://localhost:3000/api/auth",
