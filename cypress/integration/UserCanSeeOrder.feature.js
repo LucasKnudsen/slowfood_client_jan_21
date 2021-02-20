@@ -33,7 +33,7 @@ describe('User can see the entire order', () => {
       cy.get('[cy-data="product-id-1"]').within(() => {
         cy.get('[data-cy="order-button"]').click()
       })
-      cy.get('[cy-data="view-order-button"]').click();
+      cy.get('[data-cy="view-order-button"]').click();
     })
     it('Displays the orderlist', () =>{
       cy.get('[data-cy="order-modal"]').should('be.visible')
