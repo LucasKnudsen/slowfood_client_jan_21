@@ -15,20 +15,34 @@ class Menu extends React.Component {
 
   addToOrder = async (product) => {
     let authHeader = JSON.parse(localStorage.getItem("credentials"))
-    try {
-      let response = await axios.post(
-        "/orders",
-        { product_id: product.id },
+    if (!this.state.currentOrder){
+      try {
+        let response = await axios.post(
+          "/orders",
+          { product_id: product.id },
+          { headers: authHeader })
+          this.setState({
+            currentOrder: response.data.order,
+            orderMessage: `${product.title} was added to your order`
+          })
+        
+      }
+      catch (error) {
+        this.setState({ orderMessage: "Product couldn't be added to your order. Try again later" })
+      }
+    } else {
+      try {
+      let response = await axios.put(
+        `/orders/${this.state.currentOrder.id}`,
+        { product_id: product.id, order_id: this.state.currentOrder.id },
         { headers: authHeader })
-      response.status === 201 && (
         this.setState({
           currentOrder: response.data.order,
           orderMessage: `${product.title} was added to your order`
         })
-      )
-    }
-    catch (error) {
-      this.setState({ orderMessage: "Product couldn't be added to your order. Try again later" })
+      } catch (error) {
+        this.setState({ orderMessage: "Product couldn't be added to your order. Try again later" })
+      }
     }
   }
 
@@ -51,7 +65,7 @@ class Menu extends React.Component {
               <p id="order-message">{this.state.orderMessage}</p>
 
               <p id="order-length">You have {this.state.currentOrder.items.length} {this.state.currentOrder.items.length > 1 ? "items" : "item"} in your order</p>
-              <ItemList orderList={this.state.currentOrder.items}/>
+              <ItemList orderList={this.state.currentOrder.items} />
             </div>
           )}
           <Grid.Row>

@@ -8,7 +8,6 @@ const ItemList = ({ orderList }) => {
 
   const orderItems = orderList.map((item) => {
     totalPrice += item.price
-    debugger
     return (
       <Item key={item.id} data-cy={`item-id-${item.id}`} className="centering-items">
         <Item.Content >
