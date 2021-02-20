@@ -2,7 +2,8 @@ import React from 'react';
 import MenuList from '../components/MenuList'
 import { Header, Grid, Item, Icon, Container } from 'semantic-ui-react'
 import Registration from '../components/Registration';
-import axios from 'axios'
+import axios from 'axios';
+import ItemList from '../components/ItemList'
 
 class Menu extends React.Component {
   state = {
@@ -19,10 +20,9 @@ class Menu extends React.Component {
         "/orders",
         { product_id: product.id },
         { headers: authHeader })
-      debugger
-      response.status === 200 && (
+      response.status === 201 && (
         this.setState({
-          orderLength: response.data.order.items.length,
+          currentOrder: response.data.order,
           orderMessage: `${product.title} was added to your order`
         })
       )
@@ -49,7 +49,9 @@ class Menu extends React.Component {
           {this.state.orderMessage && (
             <div >
               <p id="order-message">{this.state.orderMessage}</p>
-              <p id="order-length">You have {this.state.orderLength} {this.state.orderLength > 1 ? "items" : "item"} in your order</p>
+
+              <p id="order-length">You have {this.state.currentOrder.items.length} {this.state.currentOrder.items.length > 1 ? "items" : "item"} in your order</p>
+              <ItemList orderList={this.state.currentOrder.items}/>
             </div>
           )}
           <Grid.Row>
