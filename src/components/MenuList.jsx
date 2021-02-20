@@ -16,13 +16,6 @@ class MenuList extends React.Component {
     this.setState({ products: response.data.products })
   }
 
-  // addToOrder = async (product) => {
-  //   let authHeader = localStorage.getItem("credentials")
-  //   let response = await axios.post('/orders', { product_id: product.id }, { headers: authHeader })
-
-  //   this.setState({ orderMessage: `${product.title} was added to your order` })
-  // }
-
   render() {
     const { products } = this.state
     const { authenticated } = this.props

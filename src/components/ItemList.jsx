@@ -10,7 +10,7 @@ const ItemList = ({ orderList }) => {
     totalPrice += item.price
     debugger
     return (
-      <Item className="centering-items">
+      <Item key={item.id} data-cy={`item-id-${item.id}`} className="centering-items">
         <Item.Content >
           <Item.Header>{item.title}</Item.Header>
           <Item.Meta>{item.price}kr</Item.Meta>
@@ -20,12 +20,13 @@ const ItemList = ({ orderList }) => {
   })
   return (
     <Modal
+    data-cy='order-modal'
       centered
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
       size='small'
-      trigger={<Button>View Your Order</Button>}
+      trigger={<Button data-cy='view-order-button'>View Your Order</Button>}
     >
       <Header icon>
         <Icon size="small" name='food' />
@@ -34,7 +35,7 @@ const ItemList = ({ orderList }) => {
       <Item.Group>
         {orderItems}
       </Item.Group>
-      <Modal.Content>
+      <Modal.Content data-cy='total-price'>
         <p>
           Total price: {totalPrice}kr
         </p>
