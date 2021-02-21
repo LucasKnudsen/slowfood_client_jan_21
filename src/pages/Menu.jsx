@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuList from '../components/MenuList'
-import { Header, Grid, Item, Icon, Container, Button } from 'semantic-ui-react'
+import { Header, Grid, Icon, Container, Button } from 'semantic-ui-react'
 import RegisterModal from '../components/RegisterModal'
 import axios from 'axios';
 import ItemList from '../components/ItemList'
@@ -67,9 +67,9 @@ class Menu extends React.Component {
     return (
       <Container className="page-container" fluid>
         <Grid textAlign="center" divided="vertically" >
-          <Header as="h1" className="header">
+          <Header as="h1" >
             <Icon name="gulp" />
-            <Header.Content>
+            <Header.Content className="hero">
               Spora Hrana
             <Header.Subheader>Menu List</Header.Subheader>
             </Header.Content>
@@ -90,10 +90,19 @@ class Menu extends React.Component {
               )}
             </div>
           )}
-          <Grid.Row>
-            <Item.Group>
-              <MenuList addToOrder={this.addToOrder} authenticated={authenticated} />
-            </Item.Group>
+          <Grid.Row columns={3}>
+            <Grid.Column>
+              <h1>Starters</h1>
+              <MenuList category="starters" addToOrder={this.addToOrder} authenticated={authenticated} />
+            </Grid.Column>
+            <Grid.Column>
+            <h1>Mains</h1>
+              <MenuList category="mains" addToOrder={this.addToOrder} authenticated={authenticated} />
+            </Grid.Column>
+            <Grid.Column>
+            <h1>Desserts</h1>
+              <MenuList category="desserts" addToOrder={this.addToOrder} authenticated={authenticated} />
+            </Grid.Column>
           </Grid.Row>
         </Grid>
       </Container>

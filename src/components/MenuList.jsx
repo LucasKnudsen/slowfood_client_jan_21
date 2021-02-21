@@ -8,11 +8,16 @@ class MenuList extends React.Component {
   }
 
   componentDidMount() {
-    this.getAllProducts()
+    this.getProductsByCategory(this.props.category)
   }
 
-  getAllProducts = async () => {
-    let response = await axios.get('/products')
+  // getAllProducts = async () => {
+  //   let response = await axios.get('/products')
+  //   this.setState({ products: response.data.products })
+  // }
+
+  getProductsByCategory = async (category) => {
+    let response = await axios.get(`/products?category=${category}`)
     this.setState({ products: response.data.products })
   }
 
@@ -33,20 +38,16 @@ class MenuList extends React.Component {
                   <Icon name="plus square outline" />
                 </Button.Content>
               </Button>
-
             }
           </Item.Content>
         </Item>
       )
     })
-
     return (
-      <>
-        
+      <Item.Group>
         {productList}
-      </>
+      </Item.Group>
     )
   }
 }
-
 export default MenuList
