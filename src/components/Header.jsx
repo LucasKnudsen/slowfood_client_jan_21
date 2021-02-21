@@ -1,5 +1,4 @@
 import React from 'react'
-import RegisterButton from './RegisterModal'
 import { Menu, Icon, Sidebar } from "semantic-ui-react";
 import { Link, NavLink } from "react-router-dom"
 

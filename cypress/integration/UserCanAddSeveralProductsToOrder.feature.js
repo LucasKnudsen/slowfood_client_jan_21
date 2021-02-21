@@ -22,6 +22,7 @@ describe('User can create order and add product to it', () => {
         status: 201
       })
       cy.visit('/menu')
+      cy.get('[data-cy="register-button"]').click()
       cy.get('[data-cy="registration-form"]').within(() => {
         cy.get('[data-cy="email-field"]').type('user@email.com')
         cy.get('[data-cy="password-field"]').type('password')
@@ -57,6 +58,5 @@ describe('User can create order and add product to it', () => {
       })
       cy.get('[data-cy="total-price"]').should('contain','Total price: 238kr')
     })
-
   })
 })

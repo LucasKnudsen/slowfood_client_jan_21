@@ -21,6 +21,7 @@ describe('Add to order button', () => {
     })
 
     it('displays a form to register', () => {
+      cy.get('[data-cy="register-button"]').click()
       cy.get('[data-cy="registration-form"]').within(() => {
         cy.get('[data-cy="email-field"]').type('user@email.com')
         cy.get('[data-cy="password-field"]').type('password')
@@ -31,7 +32,6 @@ describe('Add to order button', () => {
         cy.get('[data-cy="order-button"]').should('be.visible')
       })
     })
-
   })
   describe('button not visible if user is not authenticated', () => {
     beforeEach(() => {
@@ -47,6 +47,7 @@ describe('Add to order button', () => {
         status: 401
       })
       cy.visit('/menu')
+      cy.get('[data-cy="register-button"]').click()
       cy.get('[data-cy="registration-form"]').within(() => {
         cy.get('[data-cy="email-field"]').type('user@email.com')
         cy.get('[data-cy="password-field"]').type('password')
@@ -56,6 +57,7 @@ describe('Add to order button', () => {
     })
 
     it('it is not visible', () => {
+      cy.get('.ui.dimmer').click("topLeft")
       cy.get('[cy-data="product-id-1"]').within(() => {
         cy.get('[data-cy="order-button"]').should('not.be.visible')
       })

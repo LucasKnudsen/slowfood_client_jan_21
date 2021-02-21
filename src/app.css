@@ -9,6 +9,10 @@ html {
   background-size: cover;
 }
 
+.login-modal {
+  background-image: url(https://cdn.pixabay.com/photo/2017/10/22/21/02/food-2879265_1280.jpg);
+}
+
 .ui.visible.push.sidebar {
   display: flex!important;
   justify-content: center;

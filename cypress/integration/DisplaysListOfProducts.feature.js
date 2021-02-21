@@ -8,7 +8,6 @@ describe('Will display list of all products', () => {
         response: 'fixture:all_products.json',
       })
       cy.visit('/menu')
-
     })
 
     it('displays expected information inside product div', () => {
@@ -28,8 +27,8 @@ describe('Will display list of all products', () => {
         url: "http://localhost:3000/api/products",
         response: { "products": [] }
       })
-
     })
+    
     it('Bad GET request will not crash the site', () => {
       cy.get('.header').should('exist')
     })

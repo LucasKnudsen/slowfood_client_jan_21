@@ -24,6 +24,7 @@ describe('User can see the entire order', () => {
         status: 201
       })
       cy.visit('/menu')
+      cy.get('[data-cy="register-button"]').click()
       cy.get('[data-cy="registration-form"]').within(() => {
         cy.get('[data-cy="email-field"]').type('user@email.com')
         cy.get('[data-cy="password-field"]').type('password')
