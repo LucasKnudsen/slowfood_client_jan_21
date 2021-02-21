@@ -84,7 +84,7 @@ class Menu extends React.Component {
                 <div>
                   <p id="order-length">You have {currentOrder.items.length} {currentOrder.items.length > 1 ? "items" : "item"} in your order</p>
                   <ItemList orderList={currentOrder.items} />
-                  <Button data-cy="confirm-button" onClick={() => this.confirmOrder()} />
+                  <Button data-cy="confirm-button" onClick={() => this.confirmOrder()} >Confirm order!</Button>
                 </div>
               )}
             </div>
