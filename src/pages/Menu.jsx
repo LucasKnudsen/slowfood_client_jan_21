@@ -57,9 +57,7 @@ class Menu extends React.Component {
         orderMessage: response.data.message
       })
     }
-    catch (error) {
-
-    }
+    catch (error) { }
   }
 
   render() {
@@ -76,31 +74,30 @@ class Menu extends React.Component {
           </Header>
           <Grid.Row textAlign="center">
             <RegisterModal setAuthentication={() => this.setAuthentication()} />
-            {/* <Registration setAuthentication={() => this.setAuthentication()} /> */}
           </Grid.Row>
-          {orderMessage && (
-            <div >
-              <p id="order-message">{orderMessage}</p>
-              {currentOrder && (
-                <div>
-                  <p id="order-length">You have {currentOrder.items.length} {currentOrder.items.length > 1 ? "items" : "item"} in your order</p>
-                  <ItemList orderList={currentOrder.items} />
-                  <Button data-cy="confirm-button" onClick={() => this.confirmOrder()} >Confirm order!</Button>
-                </div>
-              )}
-            </div>
-          )}
+            {orderMessage && (
+              <div className="centering-items">
+                <p id="order-message">{orderMessage}</p>
+                {currentOrder && (
+                  <div>
+                    <p id="order-length">You have {currentOrder.items.length} {currentOrder.items.length > 1 ? "items" : "item"} in your order</p>
+                    <ItemList orderList={currentOrder.items} />
+                    <Button data-cy="confirm-button" onClick={() => this.confirmOrder()} >Confirm order!</Button>
+                  </div>
+                )}
+              </div>
+            )}
           <Grid.Row columns={3}>
             <Grid.Column>
               <h1>Starters</h1>
               <MenuList category="starters" addToOrder={this.addToOrder} authenticated={authenticated} />
             </Grid.Column>
             <Grid.Column>
-            <h1>Mains</h1>
+              <h1>Mains</h1>
               <MenuList category="mains" addToOrder={this.addToOrder} authenticated={authenticated} />
             </Grid.Column>
             <Grid.Column>
-            <h1>Desserts</h1>
+              <h1>Desserts</h1>
               <MenuList category="desserts" addToOrder={this.addToOrder} authenticated={authenticated} />
             </Grid.Column>
           </Grid.Row>
