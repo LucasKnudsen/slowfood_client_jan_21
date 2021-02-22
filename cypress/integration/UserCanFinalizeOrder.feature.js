@@ -3,7 +3,7 @@ describe('User can finalize order', () => {
     cy.server()
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/products",
+      url: "http://localhost:3000/api/products?category=mains",
       response: 'fixture:all_products.json',
     });
     cy.route({
